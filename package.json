@@ -5,7 +5,7 @@
   "dependencies": {
     "@ledgerhq/hw-transport-u2f": "^5.22.0",
     "@taquito/beacon-wallet": "^7.0.0-beta.0",
-    "@taquito/ledger-signer": "^7.0.0-ledger.0",
+    "@taquito/ledger-signer": "^7.0.0-beta.0",
     "@taquito/taquito": "^7.0.0-beta.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

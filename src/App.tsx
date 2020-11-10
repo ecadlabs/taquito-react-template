@@ -16,7 +16,7 @@ enum BeaconConnection {
 }
 
 const App = () => {
-  const [Tezos, setTezos] = useState(new TezosToolkit("https://api.tez.ie/rpc/delphinet"));
+  const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/delphinet"));
   const [contract, setContract] = useState(undefined);
   const [publicToken, setPublicToken] = useState("");
   const [wallet, setWallet] = useState(null);
