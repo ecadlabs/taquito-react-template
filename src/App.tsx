@@ -16,7 +16,7 @@ enum BeaconConnection {
 }
 
 const App = () => {
-  const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/delphinet"));
+  const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/carthagenet"));
   const [contract, setContract] = useState(undefined);
   const [publicToken, setPublicToken] = useState("");
   const [wallet, setWallet] = useState(null);
@@ -124,7 +124,7 @@ const App = () => {
             <p>
               <i className="far fa-file-code"></i>&nbsp;
               <a
-                href={`https://better-call.dev/delphinet/${contractAddress}/operations`}
+                href={`https://better-call.dev/carthagenet/${contractAddress}/operations`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

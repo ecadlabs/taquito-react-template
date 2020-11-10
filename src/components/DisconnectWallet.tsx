@@ -30,7 +30,7 @@ const DisconnectButton: React.FC<ButtonProps> = ({
     setUserAddress(null);
     setUserBalance(0);
     setWallet(null);
-    const tezosTK = new TezosToolkit("https://api.tez.ie/rpc/delphinet");
+    const tezosTK = new TezosToolkit("https://api.tez.ie/rpc/carthagenet");
     setTezos(tezosTK);
   };
 
