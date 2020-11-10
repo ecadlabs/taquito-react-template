@@ -17,7 +17,7 @@ const DisconnectButton: React.FC<ButtonProps> = ({
   setUserAddress,
   setUserBalance,
   setWallet,
-  setTezos
+  setTezos,
 }) => {
   const disconnectWallet = async () => {
     if (wallet) {
@@ -30,8 +30,7 @@ const DisconnectButton: React.FC<ButtonProps> = ({
     setUserAddress(null);
     setUserBalance(0);
     setWallet(null);
-    const tezosTK = new TezosToolkit();
-    tezosTK.setRpcProvider("https://carthagenet.smartpy.io");
+    const tezosTK = new TezosToolkit("https://api.tez.ie/rpc/carthagenet");
     setTezos(tezosTK);
   };
 

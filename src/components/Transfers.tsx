@@ -10,9 +10,7 @@ const Transfers: React.FC<{ Tezos: TezosToolkit }> = ({ Tezos }) => {
     if (recipient && amount) {
       setLoading(true);
       try {
-        const op = await Tezos.wallet
-          .transfer({ to: recipient, amount: parseInt(amount) })
-          .send();
+        const op = await Tezos.wallet.transfer({ to: recipient, amount: parseInt(amount) }).send();
         await op.confirmation();
         setRecipient("");
         setAmount("");
@@ -26,23 +24,9 @@ const Transfers: React.FC<{ Tezos: TezosToolkit }> = ({ Tezos }) => {
 
   return (
     <div id="transfer-inputs">
-      <input
-        type="text"
-        placeholder="Recipient"
-        value={recipient}
-        onChange={e => setRecipient(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Amount"
-        value={amount}
-        onChange={e => setAmount(e.target.value)}
-      />
-      <button
-        className="button"
-        disabled={!recipient && !amount}
-        onClick={sendTransfer}
-      >
+      <input type="text" placeholder="Recipient" value={recipient} onChange={(e) => setRecipient(e.target.value)} />
+      <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+      <button className="button" disabled={!recipient && !amount} onClick={sendTransfer}>
         {loading ? (
           <span>
             <i className="fas fa-spinner fa-spin"></i>&nbsp; Please wait

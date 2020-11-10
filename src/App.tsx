@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 import "./App.css";
 import ConnectButton from "./components/ConnectWallet";
@@ -7,16 +7,16 @@ import qrcode from "qrcode-generator";
 import UpdateContract from "./components/UpdateContract";
 import Transfers from "./components/Transfers";
 
-const App = () => {
-  enum BeaconConnection {
-    NONE = "",
-    LISTENING = "Listening to P2P channel",
-    CONNECTED = "Channel connected",
-    PERMISSION_REQUEST_SENT = "Permission request sent, waiting for response",
-    PERMISSION_REQUEST_SUCCESS = "Wallet is connected"
-  }
+enum BeaconConnection {
+  NONE = "",
+  LISTENING = "Listening to P2P channel",
+  CONNECTED = "Channel connected",
+  PERMISSION_REQUEST_SENT = "Permission request sent, waiting for response",
+  PERMISSION_REQUEST_SUCCESS = "Wallet is connected",
+}
 
-  const [Tezos, setTezos] = useState(new TezosToolkit());
+const App = () => {
+  const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/carthagenet"));
   const [contract, setContract] = useState(undefined);
   const [publicToken, setPublicToken] = useState("");
   const [wallet, setWallet] = useState(null);
@@ -24,9 +24,7 @@ const App = () => {
   const [userBalance, setUserBalance] = useState(0);
   const [storage, setStorage] = useState(0);
   const [copiedPublicToken, setCopiedPublicToken] = useState(false);
-  const [beaconConnection, setBeaconConnection] = useState(
-    BeaconConnection.NONE
-  );
+  const [beaconConnection, setBeaconConnection] = useState(BeaconConnection.NONE);
   const [activeTab, setActiveTab] = useState("transfer");
 
   const contractAddress = "KT1Pdsb8cUZkXGxVaXCzo9DntriCEYdG9gWT";
@@ -39,10 +37,6 @@ const App = () => {
     return { __html: qr.createImgTag(4) };
   };
 
-  useEffect(() => {
-    Tezos.setRpcProvider("https://carthagenet.smartpy.io");
-  });
-
   if (publicToken && (!userAddress || isNaN(userBalance))) {
     return (
       <div className="main-box">
@@ -51,13 +45,9 @@ const App = () => {
           <header>Try the Taquito Boilerplate App!</header>
           <div id="content">
             <p className="text-align-center">
-              <i className="fas fa-broadcast-tower"></i>&nbsp; Connecting to
-              your wallet
+              <i className="fas fa-broadcast-tower"></i>&nbsp; Connecting to your wallet
             </p>
-            <div
-              dangerouslySetInnerHTML={generateQrCode()}
-              className="text-align-center"
-            ></div>
+            <div dangerouslySetInnerHTML={generateQrCode()} className="text-align-center"></div>
             <p id="public-token">
               {copiedPublicToken ? (
                 <span id="public-token-copy__copied">
@@ -169,10 +159,7 @@ const App = () => {
         <div className="title">
           <h1>Taquito Boilerplate</h1>
           <a href="https://app.netlify.com/start/deploy?repository=https://github.com/ecadlabs/taquito-boilerplate">
-            <img
-              src="https://www.netlify.com/img/deploy/button.svg"
-              alt="netlify-button"
-            />
+            <img src="https://www.netlify.com/img/deploy/button.svg" alt="netlify-button" />
           </a>
         </div>
         <div id="dialog">
@@ -180,15 +167,11 @@ const App = () => {
           <div id="content">
             <p>Hello!</p>
             <p>
-              This is a template Tezos dApp built using Taquito. It's a starting
-              point for you to hack on and build your own dApp for Tezos.
+              This is a template Tezos dApp built using Taquito. It's a starting point for you to hack on and build your
+              own dApp for Tezos.
               <br />
               If you have not done so already, go to the{" "}
-              <a
-                href="https://github.com/ecadlabs/taquito-boilerplate"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://github.com/ecadlabs/taquito-boilerplate" target="_blank" rel="noopener noreferrer">
                 Taquito boilerplate Github page
               </a>{" "}
               and click the <em>"Use this template"</em> button.
