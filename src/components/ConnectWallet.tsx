@@ -81,7 +81,8 @@ const ConnectButton: React.FC<ButtonProps> = ({
       Tezos.setWalletProvider(wallet);
       await wallet.requestPermissions({
         network: {
-          type: NetworkType.CARTHAGENET,
+          //@ts-ignore
+          type: NetworkType.CUSTOM,
           rpcUrl: "https://api.tez.ie/rpc/carthagenet",
         },
       });
