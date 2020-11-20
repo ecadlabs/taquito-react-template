@@ -5,22 +5,16 @@ interface UpdateContractProps {
   contract: WalletContract | null;
   setUserBalance: Dispatch<SetStateAction<any>>;
   Tezos: TezosToolkit;
-  userAddress: string | null;
+  userAddress: string;
   setStorage: Dispatch<SetStateAction<number>>;
 }
 
-const UpdateContract: React.FC<UpdateContractProps> = ({
-  contract,
-  setUserBalance,
-  Tezos,
-  userAddress,
-  setStorage,
-}) => {
-  const [loadingIncrement, setLoadingIncrement] = useState(false);
-  const [loadingDecrement, setLoadingDecrement] = useState(false);
+const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStorage }: UpdateContractProps) => {
+  const [loadingIncrement, setLoadingIncrement] = useState<boolean>(false);
+  const [loadingDecrement, setLoadingDecrement] = useState<boolean>(false);
 
   if (contract && userAddress) {
-    const increment = async () => {
+    const increment = async (): Promise<void> => {
       setLoadingIncrement(true);
       try {
         const op = await contract.methods.increment(1).send();
@@ -35,7 +29,7 @@ const UpdateContract: React.FC<UpdateContractProps> = ({
       }
     };
 
-    const decrement = async () => {
+    const decrement = async (): Promise<void> => {
       setLoadingDecrement(true);
       try {
         const op = await contract.methods.decrement(1).send();

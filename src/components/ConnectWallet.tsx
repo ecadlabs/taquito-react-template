@@ -83,7 +83,7 @@ const ConnectButton: React.FC<ButtonProps> = ({
         network: {
           //@ts-ignore
           type: NetworkType.CUSTOM,
-          rpcUrl: "https://api.tez.ie/rpc/carthagenet",
+          rpcUrl: "https://api.tez.ie/rpc/delphinet",
         },
       });
       setWallet(wallet);

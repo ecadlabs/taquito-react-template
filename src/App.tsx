@@ -16,16 +16,16 @@ enum BeaconConnection {
 }
 
 const App = () => {
-  const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/carthagenet"));
+  const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/delphinet"));
   const [contract, setContract] = useState(null);
   const [publicToken, setPublicToken] = useState<string | null>("");
   const [wallet, setWallet] = useState(null);
   const [userAddress, setUserAddress] = useState<string>("");
   const [userBalance, setUserBalance] = useState<number>(0);
   const [storage, setStorage] = useState<number>(0);
-  const [copiedPublicToken, setCopiedPublicToken] = useState(false);
-  const [beaconConnection, setBeaconConnection] = useState(BeaconConnection.NONE);
-  const [activeTab, setActiveTab] = useState("transfer");
+  const [copiedPublicToken, setCopiedPublicToken] = useState<boolean>(false);
+  const [beaconConnection, setBeaconConnection] = useState<BeaconConnection>(BeaconConnection.NONE);
+  const [activeTab, setActiveTab] = useState<string>("transfer");
 
   const contractAddress = "KT1Pdsb8cUZkXGxVaXCzo9DntriCEYdG9gWT";
 
@@ -124,7 +124,7 @@ const App = () => {
             <p>
               <i className="far fa-file-code"></i>&nbsp;
               <a
-                href={`https://better-call.dev/carthagenet/${contractAddress}/operations`}
+                href={`https://better-call.dev/delphinet/${contractAddress}/operations`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
