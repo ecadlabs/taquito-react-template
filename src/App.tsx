@@ -27,7 +27,8 @@ const App = () => {
   const [beaconConnection, setBeaconConnection] = useState<BeaconConnection>(BeaconConnection.NONE);
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
-  const contractAddress: string = "KT1Pdsb8cUZkXGxVaXCzo9DntriCEYdG9gWT";
+  // Delphinet Increment/Decrement contract
+  const contractAddress: string = "KT1UNNoiGti8kh26s5yWwnBaLMPePN5ViigS";
 
   const generateQrCode = (): { __html: string } => {
     const qr = qrcode(0, "L");

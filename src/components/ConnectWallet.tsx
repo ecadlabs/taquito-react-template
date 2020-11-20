@@ -90,7 +90,7 @@ const ConnectButton = ({
       await wallet.requestPermissions({
         network: {
           //@ts-ignore
-          type: NetworkType.CUSTOM,
+          type: NetworkType.DELPHINET,
           rpcUrl: "https://api.tez.ie/rpc/delphinet",
         },
       });
