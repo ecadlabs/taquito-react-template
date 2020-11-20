@@ -17,9 +17,9 @@ enum BeaconConnection {
 
 const App = () => {
   const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/delphinet"));
-  const [contract, setContract] = useState(null);
+  const [contract, setContract] = useState<any>(null);
   const [publicToken, setPublicToken] = useState<string | null>("");
-  const [wallet, setWallet] = useState(null);
+  const [wallet, setWallet] = useState<any>(null);
   const [userAddress, setUserAddress] = useState<string>("");
   const [userBalance, setUserBalance] = useState<number>(0);
   const [storage, setStorage] = useState<number>(0);
@@ -27,9 +27,9 @@ const App = () => {
   const [beaconConnection, setBeaconConnection] = useState<BeaconConnection>(BeaconConnection.NONE);
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
-  const contractAddress = "KT1Pdsb8cUZkXGxVaXCzo9DntriCEYdG9gWT";
+  const contractAddress: string = "KT1Pdsb8cUZkXGxVaXCzo9DntriCEYdG9gWT";
 
-  const generateQrCode = () => {
+  const generateQrCode = (): { __html: string } => {
     const qr = qrcode(0, "L");
     qr.addData(publicToken || "");
     qr.make();
