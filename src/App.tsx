@@ -18,9 +18,9 @@ enum BeaconConnection {
 const App = () => {
   const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/carthagenet"));
   const [contract, setContract] = useState(null);
-  const [publicToken, setPublicToken] = useState("");
+  const [publicToken, setPublicToken] = useState<string | null>("");
   const [wallet, setWallet] = useState(null);
-  const [userAddress, setUserAddress] = useState(null);
+  const [userAddress, setUserAddress] = useState<string>("");
   const [userBalance, setUserBalance] = useState<number>(0);
   const [storage, setStorage] = useState<number>(0);
   const [copiedPublicToken, setCopiedPublicToken] = useState(false);

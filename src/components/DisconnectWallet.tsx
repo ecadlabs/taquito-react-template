@@ -1,25 +1,25 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { TezosToolkit } from "@taquito/taquito";
 
-type ButtonProps = {
+interface ButtonProps {
   wallet: BeaconWallet | null;
-  setPublicToken: (token: any) => any;
-  setUserAddress: (address: any) => any;
-  setUserBalance: (balance: any) => any;
-  setWallet: (wallet: any) => any;
-  setTezos: (tezos: any) => any;
-};
+  setPublicToken: Dispatch<SetStateAction<string | null>>;
+  setUserAddress: Dispatch<SetStateAction<string>>;
+  setUserBalance: Dispatch<SetStateAction<number>>;
+  setWallet: Dispatch<SetStateAction<any>>;
+  setTezos: Dispatch<SetStateAction<TezosToolkit>>;
+}
 
-const DisconnectButton: React.FC<ButtonProps> = ({
+const DisconnectButton = ({
   wallet,
   setPublicToken,
   setUserAddress,
   setUserBalance,
   setWallet,
   setTezos,
-}) => {
-  const disconnectWallet = async () => {
+}: ButtonProps): JSX.Element => {
+  const disconnectWallet = async (): Promise<void> => {
     if (wallet) {
       await wallet.client.removeAllAccounts();
       await wallet.client.removeAllPeers();
@@ -27,10 +27,10 @@ const DisconnectButton: React.FC<ButtonProps> = ({
     }
     console.log("disconnecting wallet");
     window.localStorage.clear();
-    setUserAddress(null);
+    setUserAddress("");
     setUserBalance(0);
     setWallet(null);
-    const tezosTK = new TezosToolkit("https://api.tez.ie/rpc/carthagenet");
+    const tezosTK = new TezosToolkit("https://api.tez.ie/rpc/delphinet");
     setTezos(tezosTK);
   };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { NetworkType } from "@airgap/beacon-sdk";
@@ -10,7 +10,7 @@ type ButtonProps = {
   setContract: (instance: any) => any;
   setPublicToken: (token: any) => any;
   setWallet: (wallet: any) => any;
-  setUserAddress: (address: any) => any;
+  setUserAddress: Dispatch<SetStateAction<string>>;
   setUserBalance: (balance: any) => any;
   setStorage: (storage: any) => any;
   contractAddress: string;
