@@ -19,7 +19,7 @@ const App = () => {
   const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/delphinet"));
   const [contract, setContract] = useState<any>(null);
   const [publicToken, setPublicToken] = useState<string | null>("");
-  const [wallet, setWallet] = useState<any>(null);
+  const [wallet, setWallet] = useState<any>(undefined);
   const [userAddress, setUserAddress] = useState<string>("");
   const [userBalance, setUserBalance] = useState<number>(0);
   const [storage, setStorage] = useState<number>(0);
