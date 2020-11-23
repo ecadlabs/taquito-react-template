@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 
-const Transfers: React.FC<{ Tezos: TezosToolkit }> = ({ Tezos }) => {
-  const [recipient, setRecipient] = useState("");
-  const [amount, setAmount] = useState("");
-  const [loading, setLoading] = useState(false);
+const Transfers = ({ Tezos }: { Tezos: TezosToolkit }): JSX.Element => {
+  const [recipient, setRecipient] = useState<string>("");
+  const [amount, setAmount] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const sendTransfer = async () => {
+  const sendTransfer = async (): Promise<void> => {
     if (recipient && amount) {
       setLoading(true);
       try {

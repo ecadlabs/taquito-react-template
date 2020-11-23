@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@airgap/beacon-sdk": "^1.1.1",
+    "@airgap/beacon-sdk": "^1.2.0",
     "@ledgerhq/hw-transport-u2f": "^5.22.0",
     "@taquito/beacon-wallet": "^7.0.0-beta.0",
     "@taquito/ledger-signer": "^7.0.0-beta.0",

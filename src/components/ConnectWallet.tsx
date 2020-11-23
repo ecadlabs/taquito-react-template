@@ -1,24 +1,32 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { NetworkType } from "@airgap/beacon-sdk";
 import TransportU2F from "@ledgerhq/hw-transport-u2f";
 import { LedgerSigner } from "@taquito/ledger-signer";
 
-type ButtonProps = {
-  Tezos: TezosToolkit;
-  setContract: (instance: any) => any;
-  setPublicToken: (token: any) => any;
-  setWallet: (wallet: any) => any;
-  setUserAddress: (address: any) => any;
-  setUserBalance: (balance: any) => any;
-  setStorage: (storage: any) => any;
-  contractAddress: string;
-  BeaconConnection: { [p: string]: string };
-  setBeaconConnection: (conn: any) => any;
+type BeaconConnection = {
+  NONE: "";
+  LISTENING: "Listening to P2P channel";
+  CONNECTED: "Channel connected";
+  PERMISSION_REQUEST_SENT: "Permission request sent, waiting for response";
+  PERMISSION_REQUEST_SUCCESS: "Wallet is connected";
 };
 
-const ConnectButton: React.FC<ButtonProps> = ({
+type ButtonProps = {
+  Tezos: TezosToolkit;
+  setContract: Dispatch<SetStateAction<any>>;
+  setPublicToken: Dispatch<SetStateAction<string | null>>;
+  setWallet: Dispatch<SetStateAction<any>>;
+  setUserAddress: Dispatch<SetStateAction<string>>;
+  setUserBalance: Dispatch<SetStateAction<number>>;
+  setStorage: Dispatch<SetStateAction<number>>;
+  contractAddress: string;
+  BeaconConnection: BeaconConnection;
+  setBeaconConnection: Dispatch<SetStateAction<any>>;
+};
+
+const ConnectButton = ({
   Tezos,
   setContract,
   setPublicToken,
@@ -29,9 +37,9 @@ const ConnectButton: React.FC<ButtonProps> = ({
   contractAddress,
   BeaconConnection,
   setBeaconConnection,
-}) => {
-  const [loading, setLoading] = useState(false);
-  const [loadingNano, setLoadingNano] = useState(false);
+}: ButtonProps): JSX.Element => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingNano, setLoadingNano] = useState<boolean>(false);
 
   const setup = async (userAddress: string): Promise<void> => {
     setUserAddress(userAddress);
@@ -45,7 +53,7 @@ const ConnectButton: React.FC<ButtonProps> = ({
     setStorage(storage.toNumber());
   };
 
-  const connectWallet = async () => {
+  const connectWallet = async (): Promise<void> => {
     setLoading(true);
     try {
       const wallet = new BeaconWallet({
@@ -81,8 +89,9 @@ const ConnectButton: React.FC<ButtonProps> = ({
       Tezos.setWalletProvider(wallet);
       await wallet.requestPermissions({
         network: {
-          type: NetworkType.CARTHAGENET,
-          rpcUrl: "https://api.tez.ie/rpc/carthagenet",
+          //@ts-ignore
+          type: NetworkType.DELPHINET,
+          rpcUrl: "https://api.tez.ie/rpc/delphinet",
         },
       });
       setWallet(wallet);
@@ -95,7 +104,7 @@ const ConnectButton: React.FC<ButtonProps> = ({
     }
   };
 
-  const connectNano = async () => {
+  const connectNano = async (): Promise<void> => {
     try {
       setLoadingNano(true);
       const transport = await TransportU2F.create();
