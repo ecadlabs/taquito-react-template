@@ -17,21 +17,22 @@ const DisconnectButton = ({
   setUserAddress,
   setUserBalance,
   setWallet,
-  setTezos,
+  setTezos
 }: ButtonProps): JSX.Element => {
   const disconnectWallet = async (): Promise<void> => {
-    if (wallet) {
-      await wallet.client.removeAllAccounts();
-      await wallet.client.removeAllPeers();
-      setPublicToken(null);
-    }
     console.log("disconnecting wallet");
-    window.localStorage.clear();
+    //window.localStorage.clear();
     setUserAddress("");
     setUserBalance(0);
     setWallet(null);
     const tezosTK = new TezosToolkit("https://api.tez.ie/rpc/delphinet");
     setTezos(tezosTK);
+    if (wallet) {
+      await wallet.client.removeAllAccounts();
+      await wallet.client.removeAllPeers();
+      await wallet.client.destroy();
+      setPublicToken(null);
+    }
   };
 
   return (
