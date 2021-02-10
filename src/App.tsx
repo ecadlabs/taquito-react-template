@@ -12,11 +12,13 @@ enum BeaconConnection {
   LISTENING = "Listening to P2P channel",
   CONNECTED = "Channel connected",
   PERMISSION_REQUEST_SENT = "Permission request sent, waiting for response",
-  PERMISSION_REQUEST_SUCCESS = "Wallet is connected",
+  PERMISSION_REQUEST_SUCCESS = "Wallet is connected"
 }
 
 const App = () => {
-  const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://api.tez.ie/rpc/delphinet"));
+  const [Tezos, setTezos] = useState<TezosToolkit>(
+    new TezosToolkit("https://api.tez.ie/rpc/delphinet")
+  );
   const [contract, setContract] = useState<any>(undefined);
   const [publicToken, setPublicToken] = useState<string | null>("");
   const [wallet, setWallet] = useState<any>(null);
@@ -24,7 +26,7 @@ const App = () => {
   const [userBalance, setUserBalance] = useState<number>(0);
   const [storage, setStorage] = useState<number>(0);
   const [copiedPublicToken, setCopiedPublicToken] = useState<boolean>(false);
-  const [beaconConnection, setBeaconConnection] = useState<BeaconConnection>(BeaconConnection.NONE);
+  const [beaconConnection, setBeaconConnection] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
   // Delphinet Increment/Decrement contract
@@ -46,9 +48,13 @@ const App = () => {
           <header>Try the Taquito Boilerplate App!</header>
           <div id="content">
             <p className="text-align-center">
-              <i className="fas fa-broadcast-tower"></i>&nbsp; Connecting to your wallet
+              <i className="fas fa-broadcast-tower"></i>&nbsp; Connecting to
+              your wallet
             </p>
-            <div dangerouslySetInnerHTML={generateQrCode()} className="text-align-center"></div>
+            <div
+              dangerouslySetInnerHTML={generateQrCode()}
+              className="text-align-center"
+            ></div>
             <p id="public-token">
               {copiedPublicToken ? (
                 <span id="public-token-copy__copied">
@@ -73,7 +79,9 @@ const App = () => {
                 Public token: <span>{publicToken}</span>
               </span>
             </p>
-            <p className="text-align-center">Status: {beaconConnection}</p>
+            <p className="text-align-center">
+              Status: {beaconConnection ? "Connected" : "Disconnected"}
+            </p>
           </div>
         </div>
         <div id="footer">
@@ -106,7 +114,11 @@ const App = () => {
             {activeTab === "transfer" ? (
               <div id="transfers">
                 <h3 className="text-align-center">Make a transfer</h3>
-                <Transfers Tezos={Tezos} />
+                <Transfers
+                  Tezos={Tezos}
+                  setUserBalance={setUserBalance}
+                  userAddress={userAddress}
+                />
               </div>
             ) : (
               <div id="increment-decrement">
@@ -147,6 +159,7 @@ const App = () => {
             setUserBalance={setUserBalance}
             setWallet={setWallet}
             setTezos={setTezos}
+            setBeaconConnection={setBeaconConnection}
           />
         </div>
         <div id="footer">
@@ -160,7 +173,10 @@ const App = () => {
         <div className="title">
           <h1>Taquito Boilerplate</h1>
           <a href="https://app.netlify.com/start/deploy?repository=https://github.com/ecadlabs/taquito-boilerplate">
-            <img src="https://www.netlify.com/img/deploy/button.svg" alt="netlify-button" />
+            <img
+              src="https://www.netlify.com/img/deploy/button.svg"
+              alt="netlify-button"
+            />
           </a>
         </div>
         <div id="dialog">
@@ -168,11 +184,15 @@ const App = () => {
           <div id="content">
             <p>Hello!</p>
             <p>
-              This is a template Tezos dApp built using Taquito. It's a starting point for you to hack on and build your
-              own dApp for Tezos.
+              This is a template Tezos dApp built using Taquito. It's a starting
+              point for you to hack on and build your own dApp for Tezos.
               <br />
               If you have not done so already, go to the{" "}
-              <a href="https://github.com/ecadlabs/taquito-boilerplate" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/ecadlabs/taquito-boilerplate"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Taquito boilerplate Github page
               </a>{" "}
               and click the <em>"Use this template"</em> button.
@@ -188,7 +208,6 @@ const App = () => {
             setUserBalance={setUserBalance}
             setStorage={setStorage}
             contractAddress={contractAddress}
-            BeaconConnection={BeaconConnection}
             setBeaconConnection={setBeaconConnection}
           />
         </div>

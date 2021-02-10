@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 
-const Transfers = ({ Tezos }: { Tezos: TezosToolkit }): JSX.Element => {
+const Transfers = ({
+  Tezos,
+  setUserBalance,
+  userAddress
+}: {
+  Tezos: TezosToolkit;
+  setUserBalance: Dispatch<SetStateAction<number>>;
+  userAddress: string;
+}): JSX.Element => {
   const [recipient, setRecipient] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -10,10 +18,14 @@ const Transfers = ({ Tezos }: { Tezos: TezosToolkit }): JSX.Element => {
     if (recipient && amount) {
       setLoading(true);
       try {
-        const op = await Tezos.wallet.transfer({ to: recipient, amount: parseInt(amount) }).send();
+        const op = await Tezos.wallet
+          .transfer({ to: recipient, amount: parseInt(amount) })
+          .send();
         await op.confirmation();
         setRecipient("");
         setAmount("");
+        const balance = await Tezos.tz.getBalance(userAddress);
+        setUserBalance(balance.toNumber());
       } catch (error) {
         console.log(error);
       } finally {
@@ -24,9 +36,23 @@ const Transfers = ({ Tezos }: { Tezos: TezosToolkit }): JSX.Element => {
 
   return (
     <div id="transfer-inputs">
-      <input type="text" placeholder="Recipient" value={recipient} onChange={(e) => setRecipient(e.target.value)} />
-      <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
-      <button className="button" disabled={!recipient && !amount} onClick={sendTransfer}>
+      <input
+        type="text"
+        placeholder="Recipient"
+        value={recipient}
+        onChange={e => setRecipient(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="Amount"
+        value={amount}
+        onChange={e => setAmount(e.target.value)}
+      />
+      <button
+        className="button"
+        disabled={!recipient && !amount}
+        onClick={sendTransfer}
+      >
         {loading ? (
           <span>
             <i className="fas fa-spinner fa-spin"></i>&nbsp; Please wait
