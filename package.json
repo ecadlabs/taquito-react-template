@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@ledgerhq/hw-transport-u2f": "^5.22.0",
-    "@taquito/beacon-wallet": "^8.0.0-beta.7",
-    "@taquito/ledger-signer": "^8.0.0-beta.7",
-    "@taquito/taquito": "^8.0.0-beta.7",
+    "@taquito/beacon-wallet": "^8.0.1-beta.1",
+    "@taquito/ledger-signer": "^8.0.1-beta.1",
+    "@taquito/taquito": "^8.0.1-beta.1",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
@@ -25,7 +25,8 @@
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "update-taquito": "ncu -u --target newest --filter '/^@taquito.*$/' && npm i && git add . && git commit -m \"Updated Taquito version\" && git push"
   },
   "eslintConfig": {
     "extends": "react-app"
