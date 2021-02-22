@@ -5,7 +5,7 @@ import {
   NetworkType,
   BeaconEvent,
   defaultEventCallbacks
-} from "@taquito/beacon-wallet/node_modules/@airgap/beacon-sdk";
+} from "@airgap/beacon-sdk";
 import TransportU2F from "@ledgerhq/hw-transport-u2f";
 import { LedgerSigner } from "@taquito/ledger-signer";
 
