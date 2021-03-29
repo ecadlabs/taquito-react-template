@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import {
@@ -19,6 +19,7 @@ type ButtonProps = {
   contractAddress: string;
   setBeaconConnection: Dispatch<SetStateAction<boolean>>;
   setPublicToken: Dispatch<SetStateAction<string | null>>;
+  wallet: BeaconWallet;
 };
 
 const ConnectButton = ({
@@ -30,9 +31,9 @@ const ConnectButton = ({
   setStorage,
   contractAddress,
   setBeaconConnection,
-  setPublicToken
+  setPublicToken,
+  wallet
 }: ButtonProps): JSX.Element => {
-  const [loading, setLoading] = useState<boolean>(false);
   const [loadingNano, setLoadingNano] = useState<boolean>(false);
 
   const setup = async (userAddress: string): Promise<void> => {
@@ -48,37 +49,19 @@ const ConnectButton = ({
   };
 
   const connectWallet = async (): Promise<void> => {
-    setLoading(true);
     try {
-      const wallet = new BeaconWallet({
-        name: "Taquito Boilerplate",
-        preferredNetwork: NetworkType.DELPHINET,
-        disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
-        eventHandlers: {
-          // To keep the pairing alert, we have to add the following default event handlers back
-          [BeaconEvent.PAIR_INIT]: {
-            handler: defaultEventCallbacks.PAIR_INIT
-          },
-          [BeaconEvent.PAIR_SUCCESS]: {
-            handler: data => setPublicToken(data.publicKey)
-          }
-        }
-      });
-      Tezos.setWalletProvider(wallet);
       await wallet.requestPermissions({
         network: {
-          type: NetworkType.DELPHINET,
-          rpcUrl: "https://api.tez.ie/rpc/delphinet"
+          type: NetworkType.EDONET,
+          rpcUrl: "https://api.tez.ie/rpc/edonet"
         }
       });
-      setWallet(wallet);
       // gets user's address
       const userAddress = await wallet.getPKH();
       await setup(userAddress);
       setBeaconConnection(true);
     } catch (error) {
       console.log(error);
-      setLoading(false);
     }
   };
 
@@ -99,29 +82,43 @@ const ConnectButton = ({
     }
   };
 
+  useEffect(() => {
+    (async () => {
+      // creates a wallet instance
+      const wallet = new BeaconWallet({
+        name: "Taquito Boilerplate",
+        preferredNetwork: NetworkType.EDONET,
+        disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
+        eventHandlers: {
+          // To keep the pairing alert, we have to add the following default event handlers back
+          [BeaconEvent.PAIR_INIT]: {
+            handler: defaultEventCallbacks.PAIR_INIT
+          },
+          [BeaconEvent.PAIR_SUCCESS]: {
+            handler: data => setPublicToken(data.publicKey)
+          }
+        }
+      });
+      Tezos.setWalletProvider(wallet);
+      setWallet(wallet);
+      // checks if wallet was connected before
+      const activeAccount = await wallet.client.getActiveAccount();
+      if (activeAccount) {
+        const userAddress = await wallet.getPKH();
+        await setup(userAddress);
+        setBeaconConnection(true);
+      }
+    })();
+  }, []);
+
   return (
     <div className="buttons">
-      <button
-        className="button"
-        disabled={loading || loadingNano}
-        onClick={connectWallet}
-      >
-        {loading ? (
-          <span>
-            <i className="fas fa-spinner fa-spin"></i>&nbsp; Loading, please
-            wait
-          </span>
-        ) : (
-          <span>
-            <i className="fas fa-wallet"></i>&nbsp; Connect with wallet
-          </span>
-        )}
+      <button className="button" onClick={connectWallet}>
+        <span>
+          <i className="fas fa-wallet"></i>&nbsp; Connect with wallet
+        </span>
       </button>
-      <button
-        className="button"
-        disabled={loading || loadingNano}
-        onClick={connectNano}
-      >
+      <button className="button" disabled={loadingNano} onClick={connectNano}>
         {loadingNano ? (
           <span>
             <i className="fas fa-spinner fa-spin"></i>&nbsp; Loading, please

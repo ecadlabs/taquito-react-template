@@ -17,7 +17,7 @@ enum BeaconConnection {
 
 const App = () => {
   const [Tezos, setTezos] = useState<TezosToolkit>(
-    new TezosToolkit("https://api.tez.ie/rpc/delphinet")
+    new TezosToolkit("https://api.tez.ie/rpc/edonet")
   );
   const [contract, setContract] = useState<any>(undefined);
   const [publicToken, setPublicToken] = useState<string | null>("");
@@ -29,8 +29,8 @@ const App = () => {
   const [beaconConnection, setBeaconConnection] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
-  // Delphinet Increment/Decrement contract
-  const contractAddress: string = "KT1UNNoiGti8kh26s5yWwnBaLMPePN5ViigS";
+  // Edonet Increment/Decrement contract
+  const contractAddress: string = "KT1LcpMxk6vs3JKZJJPJgLuFXBePs6cMQkKa";
 
   const generateQrCode = (): { __html: string } => {
     const qr = qrcode(0, "L");
@@ -137,7 +137,7 @@ const App = () => {
             <p>
               <i className="far fa-file-code"></i>&nbsp;
               <a
-                href={`https://better-call.dev/delphinet/${contractAddress}/operations`}
+                href={`https://better-call.dev/edo2net/${contractAddress}/operations`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -209,6 +209,7 @@ const App = () => {
             setStorage={setStorage}
             contractAddress={contractAddress}
             setBeaconConnection={setBeaconConnection}
+            wallet={wallet}
           />
         </div>
         <div id="footer">
