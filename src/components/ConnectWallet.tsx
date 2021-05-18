@@ -52,8 +52,8 @@ const ConnectButton = ({
     try {
       await wallet.requestPermissions({
         network: {
-          type: NetworkType.EDONET,
-          rpcUrl: "https://api.tez.ie/rpc/edonet"
+          type: NetworkType.FLORENCENET,
+          rpcUrl: "https://api.tez.ie/rpc/florencenet"
         }
       });
       // gets user's address
@@ -87,7 +87,7 @@ const ConnectButton = ({
       // creates a wallet instance
       const wallet = new BeaconWallet({
         name: "Taquito Boilerplate",
-        preferredNetwork: NetworkType.EDONET,
+        preferredNetwork: NetworkType.FLORENCENET,
         disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
         eventHandlers: {
           // To keep the pairing alert, we have to add the following default event handlers back
