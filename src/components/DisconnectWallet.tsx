@@ -26,7 +26,7 @@ const DisconnectButton = ({
     setUserAddress("");
     setUserBalance(0);
     setWallet(null);
-    const tezosTK = new TezosToolkit("https://api.tez.ie/rpc/florencenet");
+    const tezosTK = new TezosToolkit("https://api.tez.ie/rpc/granadanet");
     setTezos(tezosTK);
     setBeaconConnection(false);
     setPublicToken(null);

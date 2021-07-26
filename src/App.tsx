@@ -17,7 +17,7 @@ enum BeaconConnection {
 
 const App = () => {
   const [Tezos, setTezos] = useState<TezosToolkit>(
-    new TezosToolkit("https://api.tez.ie/rpc/florencenet")
+    new TezosToolkit("https://api.tez.ie/rpc/granadanet")
   );
   const [contract, setContract] = useState<any>(undefined);
   const [publicToken, setPublicToken] = useState<string | null>("");
@@ -29,8 +29,8 @@ const App = () => {
   const [beaconConnection, setBeaconConnection] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
-  // Florencenet Increment/Decrement contract
-  const contractAddress: string = "KT1XCAdyQsHuNTkeLJes7R3krmGhtsmoBvNz";
+  // Granadanet Increment/Decrement contract
+  const contractAddress: string = "KT1K3XVNzsmur7VRgY8CAHPUENaErzzEpe4e";
 
   const generateQrCode = (): { __html: string } => {
     const qr = qrcode(0, "L");
@@ -137,7 +137,7 @@ const App = () => {
             <p>
               <i className="far fa-file-code"></i>&nbsp;
               <a
-                href={`https://better-call.dev/florencenet/${contractAddress}/operations`}
+                href={`https://better-call.dev/granadanet/${contractAddress}/operations`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
