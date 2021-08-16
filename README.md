@@ -6,8 +6,9 @@ A minimal React setup for starting developing Tezos DApps quickly with Taquito.
 
 ## Getting Started
 
-1. Create a new repository from taquito-boilerplate by clicking "Use this template".
-2. Clone your new repository:
+1. Make sure you have https://nodejs.org/ installed on your computer
+2. Create a new repository from taquito-boilerplate by clicking "Use this template".
+3. Clone your new repository:
 
    `git clone <YOUR_REPOSITORY_URL>`
 
