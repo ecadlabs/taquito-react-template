@@ -52,8 +52,8 @@ const ConnectButton = ({
     try {
       await wallet.requestPermissions({
         network: {
-          type: NetworkType.GRANADANET,
-          rpcUrl: "https://api.tez.ie/rpc/granadanet"
+          type: NetworkType.HANGZHOUNET,
+          rpcUrl: "https://hangzhounet.api.tez.ie"
         }
       });
       // gets user's address
@@ -87,7 +87,7 @@ const ConnectButton = ({
       // creates a wallet instance
       const wallet = new BeaconWallet({
         name: "Taquito Boilerplate",
-        preferredNetwork: NetworkType.GRANADANET,
+        preferredNetwork: NetworkType.HANGZHOUNET,
         disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
         eventHandlers: {
           // To keep the pairing alert, we have to add the following default event handlers back

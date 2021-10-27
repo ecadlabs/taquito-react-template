@@ -17,7 +17,7 @@ enum BeaconConnection {
 
 const App = () => {
   const [Tezos, setTezos] = useState<TezosToolkit>(
-    new TezosToolkit("https://api.tez.ie/rpc/granadanet")
+    new TezosToolkit("https://hangzhounet.api.tez.ie")
   );
   const [contract, setContract] = useState<any>(undefined);
   const [publicToken, setPublicToken] = useState<string | null>("");
@@ -30,7 +30,9 @@ const App = () => {
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
   // Granadanet Increment/Decrement contract
-  const contractAddress: string = "KT1K3XVNzsmur7VRgY8CAHPUENaErzzEpe4e";
+  // const contractAddress: string = "KT1K3XVNzsmur7VRgY8CAHPUENaErzzEpe4e";
+  // Hangzhounet Increment/Decrement contract
+  const contractAddress: string = "KT1WiPWNcBMcXJButkkvroRGkzs45n3iZ13c";
 
   const generateQrCode = (): { __html: string } => {
     const qr = qrcode(0, "L");
@@ -137,7 +139,7 @@ const App = () => {
             <p>
               <i className="far fa-file-code"></i>&nbsp;
               <a
-                href={`https://better-call.dev/granadanet/${contractAddress}/operations`}
+                href={`https://better-call.dev/hangzhounet/${contractAddress}/operations`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
