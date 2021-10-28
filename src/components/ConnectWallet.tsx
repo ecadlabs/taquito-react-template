@@ -86,7 +86,7 @@ const ConnectButton = ({
     (async () => {
       // creates a wallet instance
       const wallet = new BeaconWallet({
-        name: "Taquito Boilerplate",
+        name: "Taquito React Template",
         preferredNetwork: NetworkType.GRANADANET,
         disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
         eventHandlers: {
@@ -95,7 +95,10 @@ const ConnectButton = ({
             handler: defaultEventCallbacks.PAIR_INIT
           },
           [BeaconEvent.PAIR_SUCCESS]: {
-            handler: data => setPublicToken(data.publicKey)
+            handler: data => {
+              setPublicToken(data.publicKey);
+              defaultEventCallbacks.PAIR_SUCCESS(data);
+            }
           }
         }
       });
