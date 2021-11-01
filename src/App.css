@@ -188,3 +188,24 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.wallet-tab {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: solid 2px #35636e;
+  border-radius: 3px;
+  padding: 5px 10px;
+  background-color: white;
+  color: #35636e;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wallet-tab:hover {
+  background-color: #35636e;
+  color: white;
+  cursor: pointer;
+}
