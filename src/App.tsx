@@ -174,7 +174,7 @@ const App = () => {
       <div className="main-box">
         <div className="title">
           <h1>Taquito Boilerplate</h1>
-          <a href="https://app.netlify.com/start/deploy?repository=https://github.com/ecadlabs/taquito-boilerplate">
+          <a href="https://app.netlify.com/start/deploy?repository=https://github.com/ecadlabs/taquito-react-template">
             <img
               src="https://www.netlify.com/img/deploy/button.svg"
               alt="netlify-button"
