@@ -26,7 +26,7 @@ const DisconnectButton = ({
     setUserAddress("");
     setUserBalance(0);
     setWallet(null);
-    const tezosTK = new TezosToolkit("https://hangzhounet.api.tez.ie");
+    const tezosTK = new TezosToolkit("https://ghostnet.ecadinfra.com");
     setTezos(tezosTK);
     setBeaconConnection(false);
     setPublicToken(null);

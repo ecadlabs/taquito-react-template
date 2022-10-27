@@ -17,7 +17,7 @@ enum BeaconConnection {
 
 const App = () => {
   const [Tezos, setTezos] = useState<TezosToolkit>(
-    new TezosToolkit("https://hangzhounet.api.tez.ie")
+    new TezosToolkit("https://ghostnet.ecadinfra.com")
   );
   const [contract, setContract] = useState<any>(undefined);
   const [publicToken, setPublicToken] = useState<string | null>("");
@@ -29,10 +29,8 @@ const App = () => {
   const [beaconConnection, setBeaconConnection] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<string>("transfer");
 
-  // Granadanet Increment/Decrement contract
-  // const contractAddress: string = "KT1K3XVNzsmur7VRgY8CAHPUENaErzzEpe4e";
-  // Hangzhounet Increment/Decrement contract
-  const contractAddress: string = "KT1WiPWNcBMcXJButkkvroRGkzs45n3iZ13c";
+  // Ghostnet Increment/Decrement contract
+  const contractAddress: string = "KT1QMGSLynvwwSfGbaiJ8gzWHibTCweCGcu8";
 
   const generateQrCode = (): { __html: string } => {
     const qr = qrcode(0, "L");
@@ -45,9 +43,9 @@ const App = () => {
   if (publicToken && (!userAddress || isNaN(userBalance))) {
     return (
       <div className="main-box">
-        <h1>Taquito Boilerplate</h1>
+        <h1>Taquito React template</h1>
         <div id="dialog">
-          <header>Try the Taquito Boilerplate App!</header>
+          <header>Try the Taquito React template!</header>
           <div id="content">
             <p className="text-align-center">
               <i className="fas fa-broadcast-tower"></i>&nbsp; Connecting to
@@ -139,7 +137,7 @@ const App = () => {
             <p>
               <i className="far fa-file-code"></i>&nbsp;
               <a
-                href={`https://better-call.dev/hangzhounet/${contractAddress}/operations`}
+                href={`https://better-call.dev/ghostnet/${contractAddress}/operations`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -173,7 +171,7 @@ const App = () => {
     return (
       <div className="main-box">
         <div className="title">
-          <h1>Taquito Boilerplate</h1>
+          <h1>Taquito React template</h1>
           <a href="https://app.netlify.com/start/deploy?repository=https://github.com/ecadlabs/taquito-react-template">
             <img
               src="https://www.netlify.com/img/deploy/button.svg"
@@ -182,7 +180,7 @@ const App = () => {
           </a>
         </div>
         <div id="dialog">
-          <header>Welcome to Taquito Boilerplate App!</header>
+          <header>Welcome to the Taquito React template!</header>
           <div id="content">
             <p>Hello!</p>
             <p>
@@ -191,11 +189,11 @@ const App = () => {
               <br />
               If you have not done so already, go to the{" "}
               <a
-                href="https://github.com/ecadlabs/taquito-boilerplate"
+                href="https://github.com/ecadlabs/taquito-react-template"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Taquito boilerplate Github page
+                Taquito React template Github page
               </a>{" "}
               and click the <em>"Use this template"</em> button.
             </p>

@@ -1,4 +1,4 @@
-# Taquito Boilerplate in React
+# Taquito React template
 
 ![Built with Taquito][logo]
 

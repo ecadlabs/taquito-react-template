@@ -5,7 +5,7 @@ import {
   NetworkType,
   BeaconEvent,
   defaultEventCallbacks
-} from "@airgap/beacon-sdk";
+} from "@airgap/beacon-dapp";
 import TransportU2F from "@ledgerhq/hw-transport-u2f";
 import { LedgerSigner } from "@taquito/ledger-signer";
 
@@ -52,8 +52,8 @@ const ConnectButton = ({
     try {
       await wallet.requestPermissions({
         network: {
-          type: NetworkType.HANGZHOUNET,
-          rpcUrl: "https://hangzhounet.api.tez.ie"
+          type: NetworkType.GHOSTNET,
+          rpcUrl: "https://ghostnet.ecadinfra.com"
         }
       });
       // gets user's address
@@ -86,8 +86,8 @@ const ConnectButton = ({
     (async () => {
       // creates a wallet instance
       const wallet = new BeaconWallet({
-        name: "Taquito Boilerplate",
-        preferredNetwork: NetworkType.HANGZHOUNET,
+        name: "Taquito React template",
+        preferredNetwork: NetworkType.GHOSTNET,
         disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
         eventHandlers: {
           // To keep the pairing alert, we have to add the following default event handlers back
