@@ -170,7 +170,7 @@ const App = () => {
     );
   } else if (!publicToken && !userAddress && !userBalance) {
     return (
-      <div className="main-box">
+      <>
         <div className="title">
           <h1>NFT Art Map</h1>
           <ConnectButton
@@ -187,7 +187,7 @@ const App = () => {
           />
         </div>
         <Map />
-      </div>
+      </>
     );
   } else {
     return <div>An error has occurred</div>;
