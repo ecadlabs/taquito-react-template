@@ -38,7 +38,6 @@ header {
 #dialog {
   display: flex;
   flex-direction: column;
-  width: 500px;
   border: 1px solid #35636e;
   border-radius: 3px;
 }
