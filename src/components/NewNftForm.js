@@ -1,7 +1,10 @@
 import * as React from "react";
 import "../App.css";
 
-function NftDialog({ nftLocation, onClose }) {
+const mockupImage =
+  "http://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_Gotham.jpg/240px-Above_Gotham.jpg";
+
+function NftDialog({ nftLocation, setNftList, onClose }) {
   const formRef = React.useRef(null);
 
   const pinStyle = {
@@ -13,10 +16,12 @@ function NftDialog({ nftLocation, onClose }) {
   const handleSubmit = (formData) => {
     const newNftData = {
       title: formData.title.value,
+      image: mockupImage,
       price: formData.price.value,
-      location: nftLocation,
+      longitude: nftLocation.longitude,
+      latitude: nftLocation.latitude,
     };
-    console.log("TEST newNftData", newNftData);
+    setNftList((prev) => [...prev, newNftData]);
   };
 
   return (
@@ -35,7 +40,7 @@ function NftDialog({ nftLocation, onClose }) {
           <img
             width="235px"
             height="235px"
-            src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_Gotham.jpg/240px-Above_Gotham.jpg"
+            src={mockupImage}
             style={pinStyle}
           />
           <input type="number" name="price" placeholder="Price" />

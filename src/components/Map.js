@@ -54,7 +54,7 @@ const defaultNftList = [
   },
 ];
 
-export default function App() {
+export default function MapComponent() {
   const [nftList, setNftList] = useState(defaultNftList);
   const [popupInfo, setPopupInfo] = useState(null);
   const [newNftLocation, setNewNftLocation] = useState(null);
@@ -94,7 +94,6 @@ export default function App() {
             latitude: e.lngLat.lat,
             longitude: e.lngLat.lng,
           };
-          // setNftList((prev) => [...prev, newNftLocation]);
           setNewNftLocation(selectedLocation);
         }}
       >
@@ -111,6 +110,7 @@ export default function App() {
         {newNftLocation && (
           <NewNftForm
             nftLocation={newNftLocation}
+            setNftList={setNftList}
             onClose={() => setNewNftLocation(false)}
           />
         )}
@@ -120,5 +120,5 @@ export default function App() {
 }
 
 export function renderToDom(container) {
-  render(<App />, container);
+  render(<MapComponent />, container);
 }
