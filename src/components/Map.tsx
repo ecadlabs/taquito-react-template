@@ -6,11 +6,9 @@ import Map, {
   Popup,
   NavigationControl,
   FullscreenControl,
-  ScaleControl,
   GeolocateControl,
 } from "react-map-gl";
 
-import ControlPanel from "./ControlPanel";
 import Pin from "./Pin";
 
 import CITIES from "../data/cities.json";
@@ -51,10 +49,9 @@ export default function App() {
         mapStyle="mapbox://styles/mapbox/dark-v9"
         mapboxAccessToken={TOKEN}
       >
-        <GeolocateControl position="top-left" />
-        <FullscreenControl position="top-left" />
-        <NavigationControl position="top-left" />
-        <ScaleControl />
+        <GeolocateControl position="bottom-right" />
+        <FullscreenControl position="bottom-right" />
+        <NavigationControl position="bottom-right" />
 
         {pins}
 
@@ -78,8 +75,6 @@ export default function App() {
           </Popup>
         )}
       </Map>
-
-      <ControlPanel />
     </>
   );
 }
