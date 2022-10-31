@@ -8,8 +8,9 @@ import Map, {
   GeolocateControl,
 } from "react-map-gl";
 
-import Pin from "./Pin";
-import Dialog from "./Dialog";
+import NftPin from "./NftPin";
+import NftDialog from "./NftDialog";
+import NewNftForm from "./NewNftForm";
 
 const TOKEN =
   "pk.eyJ1Ijoic2FuaWFvbmxpbmUiLCJhIjoiY2w5dm1qbXR6MHpmZjN2bXl5NTM0amFobCJ9.T8zMsiXPu6nZLTBWqwYg2A";
@@ -54,8 +55,9 @@ const defaultNftList = [
 ];
 
 export default function App() {
-  const [popupInfo, setPopupInfo] = useState(null);
   const [nftList, setNftList] = useState(defaultNftList);
+  const [popupInfo, setPopupInfo] = useState(null);
+  const [newNftLocation, setNewNftLocation] = useState(null);
 
   const pins = nftList.map((nft, index) => (
     <Marker
@@ -69,7 +71,7 @@ export default function App() {
         setPopupInfo(nft);
       }}
     >
-      <Pin image={nft.image} />
+      <NftPin image={nft.image} />
     </Marker>
   ));
 
@@ -86,20 +88,14 @@ export default function App() {
         mapStyle="mapbox://styles/mapbox/dark-v9"
         mapboxAccessToken={TOKEN}
         onClick={(e) => {
-          // If we let the click event propagates to the map, it will immediately close the popup
-          // with `closeOnClick: true`
           e.originalEvent.stopPropagation();
           console.log(e);
-          const newNft = {
-            title: "New York",
-            price: "8,175,133",
-            image:
-              "http://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_Gotham.jpg/240px-Above_Gotham.jpg",
-            author: "New York",
+          const selectedLocation = {
             latitude: e.lngLat.lat,
             longitude: e.lngLat.lng,
           };
-          setNftList((prev) => [...prev, newNft]);
+          // setNftList((prev) => [...prev, newNftLocation]);
+          setNewNftLocation(selectedLocation);
         }}
       >
         <GeolocateControl position="bottom-right" />
@@ -109,7 +105,14 @@ export default function App() {
         {pins}
 
         {popupInfo && (
-          <Dialog nft={popupInfo} onClose={() => setPopupInfo(null)} />
+          <NftDialog nft={popupInfo} onClose={() => setPopupInfo(null)} />
+        )}
+
+        {newNftLocation && (
+          <NewNftForm
+            nftLocation={newNftLocation}
+            onClose={() => setNewNftLocation(false)}
+          />
         )}
       </Map>
     </>

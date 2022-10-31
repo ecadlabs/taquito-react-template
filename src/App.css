@@ -27,7 +27,7 @@ body,
 }
 
 h1 {
-  color: #35636e;
+  color: white;
   text-align: left;
 }
 
@@ -49,12 +49,22 @@ header {
 }
 
 .dialog {
+  position: relative;
+  z-index: 1;
   padding: 20px;
   background-color: white;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.dialog-backdrop {
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.338);
 }
 
 #dialog {

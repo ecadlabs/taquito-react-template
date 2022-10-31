@@ -11,8 +11,8 @@ const pinStyle = {
   borderRadius: "6px",
 };
 
-function Pin({ image }: { image: string }) {
+function NftPin({ image }: { image: string }) {
   return <img width="35px" height="35px" src={image} style={pinStyle} />;
 }
 
-export default React.memo(Pin);
+export default React.memo(NftPin);
