@@ -38,6 +38,25 @@ header {
   color: white;
 }
 
+.dialog-container {
+  position: fixed;
+    height: 100vh;
+    width: 100vw;
+    padding: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog {
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #dialog {
   display: flex;
   flex-direction: column;

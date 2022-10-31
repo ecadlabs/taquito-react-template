@@ -8,14 +8,11 @@ const pinStyle = {
   cursor: "pointer",
   fill: "#d00",
   stroke: "none",
+  borderRadius: "6px",
 };
 
-function Pin({ size = 20 }) {
-  return (
-    <svg height={size} viewBox="0 0 24 24" style={pinStyle}>
-      <path d={ICON} />
-    </svg>
-  );
+function Pin({ image }: { image: string }) {
+  return <img width="35px" height="35px" src={image} style={pinStyle} />;
 }
 
 export default React.memo(Pin);
