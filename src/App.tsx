@@ -20,7 +20,7 @@ const App = () => {
     new TezosToolkit("https://ghostnet.ecadinfra.com")
   );
   const [contract, setContract] = useState<any>(undefined);
-  const [publicToken, setPublicToken] = useState<string | null>("");
+  const [publicToken, setPublicToken] = useState<string | null>(null);
   const [wallet, setWallet] = useState<any>(null);
   const [userAddress, setUserAddress] = useState<string>("");
   const [userBalance, setUserBalance] = useState<number>(0);
