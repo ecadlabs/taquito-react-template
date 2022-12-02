@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ledgerhq/hw-transport-u2f": "^5.22.0",
     "@taquito/beacon-wallet": "^14.0.0",
-    "@taquito/ledger-signer": "^14.0.0",
     "@taquito/taquito": "^14.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

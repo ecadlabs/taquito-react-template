@@ -6,8 +6,6 @@ import {
   BeaconEvent,
   defaultEventCallbacks
 } from "@airgap/beacon-dapp";
-import TransportU2F from "@ledgerhq/hw-transport-u2f";
-import { LedgerSigner } from "@taquito/ledger-signer";
 
 type ButtonProps = {
   Tezos: TezosToolkit;
@@ -34,8 +32,6 @@ const ConnectButton = ({
   setPublicToken,
   wallet
 }: ButtonProps): JSX.Element => {
-  const [loadingNano, setLoadingNano] = useState<boolean>(false);
-
   const setup = async (userAddress: string): Promise<void> => {
     setUserAddress(userAddress);
     // updates balance
@@ -62,23 +58,6 @@ const ConnectButton = ({
       setBeaconConnection(true);
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const connectNano = async (): Promise<void> => {
-    try {
-      setLoadingNano(true);
-      const transport = await TransportU2F.create();
-      const ledgerSigner = new LedgerSigner(transport, "44'/1729'/0'/0'", true);
-
-      Tezos.setSignerProvider(ledgerSigner);
-
-      //Get the public key and the public key hash from the Ledger
-      const userAddress = await Tezos.signer.publicKeyHash();
-      await setup(userAddress);
-    } catch (error) {
-      console.log("Error!", error);
-      setLoadingNano(false);
     }
   };
 
@@ -115,20 +94,8 @@ const ConnectButton = ({
     <div className="buttons">
       <button className="button" onClick={connectWallet}>
         <span>
-          <i className="fas fa-wallet"></i>&nbsp; Connect with wallet
+          <i className="fas fa-wallet"></i>&nbsp; Connect wallet
         </span>
-      </button>
-      <button className="button" disabled={loadingNano} onClick={connectNano}>
-        {loadingNano ? (
-          <span>
-            <i className="fas fa-spinner fa-spin"></i>&nbsp; Loading, please
-            wait
-          </span>
-        ) : (
-          <span>
-            <i className="fab fa-usb"></i>&nbsp; Connect with Ledger Nano
-          </span>
-        )}
       </button>
     </div>
   );
