@@ -6,6 +6,11 @@ export default defineConfig({
   define: {
     global: {},
   },
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+  },
   plugins: [react()],
   resolve: {
     alias: {
