@@ -12,15 +12,15 @@ A minimal React setup for starting developing Tezos DApps quickly with Taquito.
 
    `git clone <YOUR_REPOSITORY_URL>`
 
-3. Change your current working directory to the newly cloned repository directory.
-4. Install dependencies:
+4. Change your current working directory to the newly cloned repository directory.
+5. Install dependencies:
 
    `npm install`
 
-5. Start development server:
+6. Start development server:
 
-   `npm run start`
+   `npm run dev`
 
-6. Open https://localhost:3000 in your browser to see a sample application.
+7. Open http://localhost:5173/ in your browser to see a sample application.
 
 [logo]: https://raw.githubusercontent.com/ecadlabs/taquito-boilerplate/master/assets/built-with-taquito.png "Built with Taquito"

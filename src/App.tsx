@@ -12,7 +12,7 @@ enum BeaconConnection {
   LISTENING = "Listening to P2P channel",
   CONNECTED = "Channel connected",
   PERMISSION_REQUEST_SENT = "Permission request sent, waiting for response",
-  PERMISSION_REQUEST_SUCCESS = "Wallet is connected"
+  PERMISSION_REQUEST_SUCCESS = "Wallet is connected",
 }
 
 const App = () => {
@@ -145,7 +145,14 @@ const App = () => {
               </a>
             </p>
             <p>
-              <i className="far fa-address-card"></i>&nbsp; {userAddress}
+              <i className="far fa-address-card"></i>&nbsp;
+              <a
+                href={`https://ghostnet.tzkt.io/${userAddress}/operations/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {userAddress}
+              </a>
             </p>
             <p>
               <i className="fas fa-piggy-bank"></i>&nbsp;
