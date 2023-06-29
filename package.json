@@ -9,22 +9,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@taquito/beacon-wallet": "^17.0.0",
-    "@taquito/taquito": "^17.0.0",
-    "@types/node": "^20.3.1",
-    "buffer": "^6.0.3",
-    "qrcode-generator": "^1.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "@taquito/beacon-wallet": "^17.0.0",
+    "@taquito/taquito": "^17.0.0",
+    "qrcode-generator": "^1.4.4",
     "stream-browserify": "^3.0.0",
+    "buffer": "^6.0.3",
     "events": "^3.3.0",
     "util": "^0.12.5"
   },
   "devDependencies": {
-    "@types/react": "^18.2.13",
+    "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "@types/node": "^20.3.2",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "typescript": "^5.1.3",
+    "typescript": "^5.1.6",
     "vite": "^4.3.9"
   }
 }
