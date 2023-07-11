@@ -33,14 +33,18 @@ A minimal React setup for starting developing Tezos DApps quickly with Taquito.
 
    `npm run preview`
 
-3. Open http://localhost:4173/ in your browser to see the production build. For more information read the [Vite Guide](https://vitejs.dev/guide/static-deploy.html)
+3. Open http://localhost:4173/ in your browser to see the production build. 
+
+For more information read the [Vite Guide](https://vitejs.dev/guide/static-deploy.html)
 
 [logo]: https://raw.githubusercontent.com/ecadlabs/taquito-boilerplate/master/assets/built-with-taquito.png "Built with Taquito"
 
 > ## Polyfill
 >
 > Before we start we need to add the following dependencies in order to not get polyfill issues. The reason for this step is that certain required dependencies are Node APIs, thus not included in Browsers. But still needed for communication and interaction with Wallets and Smart Contracts.
-> For a better understanding here are the steps described. You do not need to do the steps as its already configured.
+> For a better understanding here are the steps described. 
+>
+> You do not need to do the steps as its already configured.
 >
 > Run `npm install buffer stream-browserify util events process`
 >
