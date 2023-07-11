@@ -36,3 +36,54 @@ A minimal React setup for starting developing Tezos DApps quickly with Taquito.
 3. Open http://localhost:4173/ in your browser to see the production build. For more information read the [Vite Guide](https://vitejs.dev/guide/static-deploy.html)
 
 [logo]: https://raw.githubusercontent.com/ecadlabs/taquito-boilerplate/master/assets/built-with-taquito.png "Built with Taquito"
+
+> ## Polyfill
+>
+> Before we start we need to add the following dependencies in order to not get polyfill issues. The reason for this step is that certain required dependencies are Node APIs, thus not included in Browsers. But still needed for communication and interaction with Wallets and Smart Contracts.
+> For a better understanding here are the steps described. You do not need to do the steps as its already configured.
+>
+> Run `npm install buffer stream-browserify util events process`
+>
+> Then create a new file `nodeSpecific.ts` in the src folder of the project and add:
+> ```js
+> import { Buffer } from 'buffer'
+>
+> globalThis.Buffer = Buffer
+> ```
+>
+> Then open the `index.html` file and add the following script in the body. 
+> It should look like this:
+>
+> ```js
+> <body>
+>   <div id="root"></div>
+>    <script type="module" src="/src/nodeSpecific.ts"></script> //add this line
+>    <script type="module" src="/src/main.tsx"></script>
+> </body>
+> ```
+>
+> Finally open the `vite.config.ts` file and add the `resolve` part:
+>
+> ```js
+> import { defineConfig } from 'vite'
+> import react from '@vitejs/plugin-react-swc'
+> 
+> // https://vitejs.dev/config/
+> export default defineConfig({
+>   define: {
+>     global: {},
+>   },
+>   plugins: [react()],
+>   resolve: {
+>     alias: {
+>       stream: 'stream-browserify',
+>       os: 'os-browserify/browser',
+>       util: 'util',
+>       process: 'process/browser',
+>       buffer: 'buffer',
+>     },
+>   },
+> })
+> ```
+>
+> Now we can run the app. 
