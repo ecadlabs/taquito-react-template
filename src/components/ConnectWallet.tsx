@@ -4,7 +4,7 @@ import { BeaconWallet } from "@taquito/beacon-wallet";
 import {
   NetworkType,
   BeaconEvent,
-  defaultEventCallbacks
+  defaultEventCallbacks,
 } from "@airgap/beacon-dapp";
 
 type ButtonProps = {
@@ -30,7 +30,7 @@ const ConnectButton = ({
   contractAddress,
   setBeaconConnection,
   setPublicToken,
-  wallet
+  wallet,
 }: ButtonProps): JSX.Element => {
   const setup = async (userAddress: string): Promise<void> => {
     setUserAddress(userAddress);
@@ -49,8 +49,8 @@ const ConnectButton = ({
       await wallet.requestPermissions({
         network: {
           type: NetworkType.GHOSTNET,
-          rpcUrl: "https://ghostnet.ecadinfra.com"
-        }
+          rpcUrl: "https://ghostnet.ecadinfra.com",
+        },
       });
       // gets user's address
       const userAddress = await wallet.getPKH();
@@ -67,16 +67,7 @@ const ConnectButton = ({
       const wallet = new BeaconWallet({
         name: "Taquito React template",
         preferredNetwork: NetworkType.GHOSTNET,
-        disableDefaultEvents: true, // Disable all events / UI. This also disables the pairing alert.
-        eventHandlers: {
-          // To keep the pairing alert, we have to add the following default event handlers back
-          [BeaconEvent.PAIR_INIT]: {
-            handler: defaultEventCallbacks.PAIR_INIT
-          },
-          [BeaconEvent.PAIR_SUCCESS]: {
-            handler: data => setPublicToken(data.publicKey)
-          }
-        }
+        disableDefaultEvents: false, // Disable all events when true/ UI. This also disables the pairing alert.
       });
       Tezos.setWalletProvider(wallet);
       setWallet(wallet);
