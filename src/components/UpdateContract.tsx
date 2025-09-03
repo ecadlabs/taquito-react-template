@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { TezosToolkit, WalletContract } from "@taquito/taquito";
 
 interface UpdateContractProps {
