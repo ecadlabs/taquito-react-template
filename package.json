@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@taquito/beacon-wallet": "^22.0.0",
-    "@taquito/taquito": "^22.0.0",
+    "@taquito/beacon-wallet": "^23.0.0",
+    "@taquito/taquito": "^23.0.0",
     "buffer": "^6.0.3",
     "events": "^3.3.0",
     "qrcode-generator": "^2.0.4",
