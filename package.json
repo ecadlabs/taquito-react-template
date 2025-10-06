@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@airgap/beacon-dapp": "^4.6.1",
+    "@airgap/beacon-sdk": "^4.6.1",
     "@taquito/beacon-wallet": "^23.0.2",
     "@taquito/taquito": "^23.0.2",
     "buffer": "^6.0.3",
