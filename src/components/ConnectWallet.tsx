@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { TezosToolkit } from "@taquito/taquito";
 import { BeaconWallet } from "@taquito/beacon-wallet";
-import { NetworkType } from "@airgap/beacon-dapp";
+import { NetworkType, BeaconEvent } from "@airgap/beacon-dapp";
 
 type ButtonProps = {
   Tezos: TezosToolkit;
@@ -27,7 +27,7 @@ const ConnectButton = ({
   setBeaconConnection,
   setPublicToken,
   wallet,
-}: ButtonProps): JSX.Element => {
+}: ButtonProps): React.JSX.Element => {
   const setup = async (userAddress: string): Promise<void> => {
     setUserAddress(userAddress);
     // updates balance
@@ -42,16 +42,7 @@ const ConnectButton = ({
 
   const connectWallet = async (): Promise<void> => {
     try {
-      await wallet.requestPermissions({
-        network: {
-          type: NetworkType.GHOSTNET,
-          rpcUrl: "https://ghostnet.ecadinfra.com",
-        },
-      });
-      // gets user's address
-      const userAddress = await wallet.getPKH();
-      await setup(userAddress);
-      setBeaconConnection(true);
+      await wallet.requestPermissions();
     } catch (error) {
       console.log(error);
     }
@@ -63,8 +54,26 @@ const ConnectButton = ({
       const wallet = new BeaconWallet({
         name: "Taquito React template",
         preferredNetwork: NetworkType.GHOSTNET,
+        network: {
+          type: NetworkType.GHOSTNET,
+          rpcUrl: "https://ghostnet.ecadinfra.com",
+        },
         disableDefaultEvents: false, // Disable all events when true/ UI. This also disables the pairing alert.
       });
+      
+      // Subscribe to ACTIVE_ACCOUNT_SET event (mandatory from Beacon SDK 4.2.0+)
+      wallet.client.subscribeToEvent(BeaconEvent.ACTIVE_ACCOUNT_SET, async (account) => {
+        if (account) {
+          console.log(`Active account set: ${account.address}`);
+          const userAddress = await wallet.getPKH();
+          await setup(userAddress);
+          setBeaconConnection(true);
+        } else {
+          console.log("No active account.");
+          setBeaconConnection(false);
+        }
+      });
+      
       Tezos.setWalletProvider(wallet);
       setWallet(wallet);
       // checks if wallet was connected before
