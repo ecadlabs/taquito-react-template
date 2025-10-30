@@ -11,8 +11,8 @@
   "dependencies": {
     "@airgap/beacon-dapp": "^4.6.1",
     "@airgap/beacon-sdk": "^4.6.1",
-    "@taquito/beacon-wallet": "^23.0.2",
-    "@taquito/taquito": "^23.0.2",
+    "@taquito/beacon-wallet": "^23.0.3",
+    "@taquito/taquito": "^23.0.3",
     "buffer": "^6.0.3",
     "events": "^3.3.0",
     "qrcode-generator": "^2.0.4",
