@@ -16,7 +16,7 @@ const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStora
   const increment = async (): Promise<void> => {
     setLoadingIncrement(true);
     try {
-      const op = await contract.methods.increment(1).send();
+      const op = await contract.methodsObject.increment(1).send();
       await op.confirmation();
       const newStorage: any = await contract.storage();
       if (newStorage) setStorage(newStorage.toNumber());
@@ -31,7 +31,7 @@ const UpdateContract = ({ contract, setUserBalance, Tezos, userAddress, setStora
   const decrement = async (): Promise<void> => {
     setLoadingDecrement(true);
     try {
-      const op = await contract.methods.decrement(1).send();
+      const op = await contract.methodsObject.decrement(1).send();
       await op.confirmation();
       const newStorage: any = await contract.storage();
       if (newStorage) setStorage(newStorage.toNumber());
